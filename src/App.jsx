@@ -113,67 +113,93 @@ function App() {
     }
   };
 
+
+
+
+  
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Email Builder</h1>
-
-      <label className="block font-semibold">Title:</label>
-      <input
-        type="text"
-        className="w-full p-2 border mb-4"
-        value={emailConfig.title}
-        onChange={(e) => handleInputChange("title", e.target.value)}
-      />
-
-      <label className="block font-semibold">Content:</label>
-      <ReactQuill
-        theme="snow"
-        value={emailConfig.content}
-        onChange={(value) => handleInputChange("content", value)}
-      />
-
-      <label className="block font-semibold mt-4">Footer:</label>
-      <input
-        type="text"
-        className="w-full p-2 border mb-4"
-        value={emailConfig.footer}
-        onChange={(e) => handleInputChange("footer", e.target.value)}
-      />
-
-      <label className="block font-semibold mt-4">Upload Image:</label>
-      <input
-        type="file"
-        onChange={handleImageUpload}
-        className="mb-4"
-        accept="image/png, image/gif, image/jpeg"
-      />
-
-      <div className="flex space-x-4 mt-4">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={handleRenderAndDownload}
-        >
-          Render & Download
-        </button>
-        <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
-          onClick={handleSaveEmailConfig} // Add the save email config button
-        >
-          Save Template
-        </button>
+    <div className="min-h-screen bg-gray-100">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-6 shadow-md">
+        <h1 className="text-4xl font-extrabold uppercase tracking-wide">
+          Email Builder
+        </h1>
+        <p className="text-lg font-medium mt-2">
+          Create, preview, and save stunning email templates effortlessly
+        </p>
       </div>
-
-      <div className="mt-8 p-4 border rounded">
-        <h2 className="text-xl font-bold mb-4">Live Preview</h2>
-        <div
-          className="preview"
-          dangerouslySetInnerHTML={{
-            __html: renderTemplate() || "Loading preview...",
-          }}
-        ></div>
+  
+      {/* Content Section */}
+      <div className="p-6">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:space-x-4">
+          {/* Left Side - Form */}
+          <div className="lg:w-1/2 bg-white p-6 rounded shadow-md text-gray-800">
+            <label className="block font-semibold text-gray-700">Title:</label>
+            <input
+              type="text"
+              className="w-full p-2 border mb-4 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={emailConfig.title}
+              onChange={(e) => handleInputChange("title", e.target.value)}
+            />
+  
+            <label className="block font-semibold text-gray-700">Content:</label>
+            <ReactQuill
+              theme="snow"
+              value={emailConfig.content}
+              onChange={(value) => handleInputChange("content", value)}
+            />
+  
+            <label className="block font-semibold text-gray-700 mt-4">Footer:</label>
+            <input
+              type="text"
+              className="w-full p-2 border mb-4 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={emailConfig.footer}
+              onChange={(e) => handleInputChange("footer", e.target.value)}
+            />
+  
+            <label className="block font-semibold text-gray-700 mt-4">Upload Image:</label>
+            <input
+              type="file"
+              onChange={handleImageUpload}
+              className="mb-4"
+              accept="image/png, image/gif, image/jpeg"
+            />
+  
+            <div className="flex space-x-4 mt-4">
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onClick={handleRenderAndDownload}
+              >
+                Render & Download
+              </button>
+              <button
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow focus:outline-none focus:ring-2 focus:ring-green-500"
+                onClick={handleSaveEmailConfig}
+              >
+                Save Template
+              </button>
+            </div>
+          </div>
+  
+          {/* Right Side - Live Preview */}
+          <div className="lg:w-1/2 bg-white p-6 rounded shadow-md mt-8 lg:mt-0 text-gray-800">
+            <h2 className="text-xl font-bold mb-4">Live Preview</h2>
+            <div
+              className="preview border p-4 rounded"
+              dangerouslySetInnerHTML={{
+                __html: renderTemplate() || "Loading preview...",
+              }}
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   );
+  
+  
+  
+  
 }
 
 export default App;
